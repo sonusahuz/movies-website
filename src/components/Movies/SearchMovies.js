@@ -1,7 +1,7 @@
 import React, { useDebugValue, useEffect, useState } from "react";
 import { Spinner } from "@material-tailwind/react";
 import { SideBar } from "../Layouts/SideBar";
-import { options } from "../Redux/movieSlice";
+import { options } from "../constants/constants";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { MovieCard } from "./MovieCard";
@@ -10,7 +10,6 @@ export const SearchMovies = () => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const { query } = useParams();
-
   const fetchMoreData = () => {
     setLoading(true);
     setTimeout(() => {

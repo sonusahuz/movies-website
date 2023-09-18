@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   addToWishList,
   movieData,
   removeToWishList,
-  unavaiable,
 } from "../Redux/movieSlice";
-import toast, { Toast, Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useParams, Link } from "react-router-dom";
-import { img_100 } from "../Redux/movieSlice";
-import { options } from "../Redux/movieSlice";
+import { img_100, options, unavaiable } from "../constants/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "@material-tailwind/react";
 import { RelatedMovies } from "./RelatedMovies";

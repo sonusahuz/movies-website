@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { options } from "../Redux/movieSlice";
+import { options } from "../constants/constants";
 import { Dialog } from "@material-tailwind/react";
 import ReactPlayer from "react-player";
 export const RelatedMovies = () => {

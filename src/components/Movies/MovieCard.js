@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { unavaiable, img_100 } from "../Redux/movieSlice";
+import { unavaiable, img_100 } from "../constants/constants";
 export const MovieCard = ({ items }) => {
   return (
     <div className="w-[300px] h-[400px] sm:w-[200px] bg-gray-500 sm:h-[370px] m-4 rounded hover:scale-110 transition duration-300 cursor-pointer object-cover">
