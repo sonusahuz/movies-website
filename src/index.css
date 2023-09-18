@@ -9,3 +9,12 @@
   font-family: "Mooli", sans-serif;
   font-family: "Poppins", sans-serif;
 }
+
+body {
+  background-color: black;
+}
+
+.active {
+  color: white;
+  background-color: rgb(101, 101, 227);
+}
