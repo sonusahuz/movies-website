@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import { MovieCard } from "./MovieCard";
 export const WishList = () => {
   const wishList = useSelector((state) => state.movies.wishlist);
-  const dispatch = useDispatch();
-
   return (
     <div className="flex items-start justify-start sm:mx-5 md:mx-10 lg:mx-20 mx-2">
       <SideBar />

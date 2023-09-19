@@ -4,12 +4,19 @@ import { movieData } from "../Redux/movieSlice";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../Movies/MovieCard";
 import { SideBar } from "../Layouts/SideBar";
+import { Spinner } from "@material-tailwind/react";
 export const Movie = () => {
   const dispatch = useDispatch();
   const moviesSlice = useSelector((state) => state.movies?.movies);
+  const loading = useSelector((state) => state.movies.isLoading);
+
   useEffect(() => {
     dispatch(movieData("/discover/movie"));
   }, []);
+  if (loading)
+    return (
+      <Spinner className="flex items-center justify-center h-screen mx-auto" />
+    );
   return (
     <div className="flex items-start justify-start sm:mx-5 md:mx-10 lg:mx-20 mx-2">
       <SideBar />

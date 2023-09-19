@@ -4,14 +4,13 @@ import { movieData, unavaiable } from "../Redux/movieSlice";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 export function PlayMovie() {
-  const [open, setOpen] = React.useState(false);
   const params = useParams();
   const dispatch = useDispatch();
   const moviesSlice = useSelector((state) => state.movies.movies);
+  const loading = useSelector((state) => state.movies.isLoading);
   useEffect(() => {
     dispatch(movieData(`/movie/${params.id}/videos`));
   }, []);
-  const loading = useSelector((state) => state.movies.isLoading);
   if (loading)
     return (
       <Spinner className="flex items-center justify-center h-screen mx-auto" />

@@ -5,45 +5,31 @@ import { options } from "../constants/constants";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { MovieCard } from "./MovieCard";
+import { useQuery } from "@tanstack/react-query";
 export const SearchMovies = () => {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
   const { query } = useParams();
-  const fetchMoreData = () => {
-    setLoading(true);
-    setTimeout(() => {
-      const fetchData = async () => {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/search/multi?query=${query}&page=${page}`,
-          options
-        );
-        const data = await response.json();
-        setMovies(data.results);
-        setLoading(false);
-        setPage((prev) => prev + 1);
-      };
-      fetchData();
-      setLoading(false);
-      setMovies((prevItems) => [...prevItems, ...movies]);
-      setLoading(false);
-      setPage((prevPage) => prevPage + 1);
-    }, 1000);
-  };
-  useEffect(() => {
-    fetchMoreData();
-  }, [query]);
+  const { data, isLoading } = useQuery({
+    queryFn: async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/multi?query=${query}&page=1`,
+        options
+      );
+      const data = await response.json();
+      return data;
+    },
+    queryKey: ["search product"],
+    enabled: !!query,
+  });
 
-  if (loading)
+  if (isLoading)
     return (
       <Spinner className="flex items-center justify-center h-screen mx-auto" />
     );
-
   return (
     <div className="flex items-start justify-start sm:mx-5 md:mx-10 lg:mx-20 mx-2">
       <SideBar />
       <div className="flex items-center justify-between flex-wrap">
-        {movies?.map((items) => (
+        {data?.results?.map((items) => (
           <Link to={`/movie/${items.id}`}>
             <MovieCard items={items} />
           </Link>

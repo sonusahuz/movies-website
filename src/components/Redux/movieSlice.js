@@ -8,7 +8,6 @@ export const movieData = createAsyncThunk("movies", async (url) => {
   const data = await response.json();
   return data;
 });
-
 export const movieSlice = createSlice({
   name: "movie",
   initialState: {
@@ -16,6 +15,7 @@ export const movieSlice = createSlice({
     searchQuery: "",
     isLoading: false,
     wishlist: [],
+    currentPage: 1,
   },
   extraReducers: (builder) => {
     builder.addCase(movieData.fulfilled, (state, action) => {
@@ -44,9 +44,17 @@ export const movieSlice = createSlice({
         (item) => item.id !== action.payload.id
       );
     },
+    setPagination: (state, action) => {
+      state.currentPage = action.payload;
+    },
   },
 });
 
-export const { setMovies, setSearch, addToWishList, removeToWishList } =
-  movieSlice.actions;
+export const {
+  setMovies,
+  setSearch,
+  addToWishList,
+  removeToWishList,
+  setPagination,
+} = movieSlice.actions;
 export default movieSlice.reducer;

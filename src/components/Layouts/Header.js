@@ -14,9 +14,8 @@ export const Header = () => {
     setSearchTerm("");
   };
   const wishList = useSelector((state) => state.movies.wishlist);
-
   return (
-    <div className="flex items-center justify-between sm:mx-5 md:mx-10 lg:mx-20 py-3 ">
+    <div className="flex items-center justify-between sm:mx-5 md:mx-10 lg:mx-20 py-3">
       <Link to={"/"}>
         <h1 className="text-white md:text-3xl font-bold  text-xl">
           Movies Hub
@@ -37,7 +36,7 @@ export const Header = () => {
       <div>
         <Badge content={wishList.length}>
           <NavLink
-            className="bg-blue-800 text-white px-4 py-2 "
+            className="bg-blue-800 text-white px-4 py-2"
             to={`/wishlist`}
           >
             Wishlist

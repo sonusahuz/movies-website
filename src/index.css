@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "react-alice-carousel/lib/alice-carousel.css";
 @import url("https://fonts.googleapis.com/css2?family=Mooli&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 * {
   padding: 0;
