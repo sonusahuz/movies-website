@@ -1,21 +1,13 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { movieData } from "../Redux/movieSlice";
+import React from "react";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../Movies/MovieCard";
+import Loading from "../Spinner/Loading";
+import useMovieData from "../hooks/useFetch";
 import { SideBar } from "../Layouts/SideBar";
-import { Spinner } from "@material-tailwind/react";
 export const TvMovie = () => {
-  const dispatch = useDispatch();
-  const moviesSlice = useSelector((state) => state.movies?.movies);
-  useEffect(() => {
-    dispatch(movieData("/discover/tv"));
-  }, []);
-  const loading = useSelector((state) => state.movies.isLoading);
-  if (loading)
-    return (
-      <Spinner className="flex items-center justify-center h-screen mx-auto" />
-    );
+  const { loading, moviesSlice } = useMovieData("/discover/tv");
+  if (loading) return <Loading />;
+
   return (
     <div className="flex items-start justify-start sm:mx-5 md:mx-10 lg:mx-20 mx-2">
       <SideBar />
